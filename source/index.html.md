@@ -1,11 +1,8 @@
 ---
-title: API Reference
+title: Poster API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - php: PHP
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -25,7 +22,7 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Авторизация 1-0
 
 > To authorize, use this code:
 
@@ -65,73 +62,77 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Маркетинг (clients)
 
-## Get All Kittens
+Все методы по работе с разделом маркетинга начинаются с clients.
 
-```ruby
-require 'kittn'
+## Список маркетинговых групп (clients.getGroups)
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+>  Пример запроса:
+
+```php
+$url = 'https://demo.joinposter.com/api/clients.getGroups?' . 
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148';
+
+$groups = sendRequest($url);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> После отправки запроса, получим примерно следующий ответ:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "response":[
+    {
+      "client_groups_id":"1",
+      "client_groups_name":"Постоянный посетитель",
+      "loyalty_type":"1",
+      "client_groups_discount":"10",
+      "birthday_bonus":"50",
+      "count_groups_clients":"125"
+    },
+    {
+      "client_groups_id":"4",
+      "client_groups_name":"Скидочная система 10%",
+      "loyalty_type":"2",
+      "client_groups_discount":"10",
+      "birthday_bonus":"0",
+      "count_groups_clients":"43"
+    },
+    {
+      "client_groups_id":"5",
+      "client_groups_name":"Скидочная система 20%",
+      "loyalty_type":"2",
+      "client_groups_discount":"20",
+      "birthday_bonus":"0",
+      "count_groups_clients":"42"
+    }
+  ]
+}
 ```
 
-This endpoint retrieves all kittens.
+Все клиенты в Poster группируются по маркетинговым группам. Данный запрос возвращает список маркетинговых групп.
 
-### HTTP Request
+### HTTP запрос
 
-`GET http://example.com/api/kittens`
+`GET https://{account}.joinposter.com/api/clients.getGroups`
 
-### Query Parameters
+### Параметры запроса clients.getGroups
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Параметр | Описание
+--------- | -----------
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Параметры ответа clients.getGroups
+
+Параметр | Описание
+--------- | -----------
+client_groups_id | id маркетинговой группы
+client_groups_name |  Название группы
+loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
+client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
+birthday_bonus |  Количество бонусов (в копейках), начисляемых на День Рождения клиентов. Используется только бонусными группами. 
+count_groups_clients |  Количество клиентов, что находится в данной группе
 
 ## Get a Specific Kitten
 

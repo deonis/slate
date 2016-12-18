@@ -62,11 +62,11 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Маркетинг (clients)
+# clients: Маркетинг
 
 Все методы по работе с разделом маркетинга начинаются с clients.
 
-## Список маркетинговых групп (clients.getGroups)
+## clients.getGroups: Список маркетинговых групп
 
 >  Пример запроса:
 
@@ -77,7 +77,7 @@ $url = 'https://demo.joinposter.com/api/clients.getGroups?' .
 $groups = sendRequest($url);
 ```
 
-> После отправки запроса, получим примерно следующий ответ:
+> Пример ответа:
 
 ```json
 {
@@ -87,7 +87,7 @@ $groups = sendRequest($url);
       "client_groups_name":"Постоянный посетитель",
       "loyalty_type":"1",
       "client_groups_discount":"10",
-      "birthday_bonus":"50",
+      "birthday_bonus":"5000",
       "count_groups_clients":"125"
     },
     {
@@ -116,7 +116,7 @@ $groups = sendRequest($url);
 
 `GET https://{account}.joinposter.com/api/clients.getGroups`
 
-### Параметры запроса clients.getGroups
+### GET-параметры запроса clients.getGroups
 
 Параметр | Описание
 --------- | -----------
@@ -131,60 +131,166 @@ client_groups_id | id маркетинговой группы
 client_groups_name |  Название группы
 loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
 client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
-birthday_bonus |  Количество бонусов (в копейках), начисляемых на День Рождения клиентов. Используется только бонусными группами. 
+birthday_bonus |  Количество бонусов (в копейках), начисляемых на День рождения клиентов. Используется только бонусными группами.
 count_groups_clients |  Количество клиентов, что находится в данной группе
 
-## Get a Specific Kitten
+## clients.getGroup: Данные маркетинговой группы
 
-```ruby
-require 'kittn'
+>  Пример запроса:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+```php
+$url = 'https://demo.joinposter.com/api/clients.getGroup?' .
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148&group_id=1';
+
+$group = sendRequest($url);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Пример ответа:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "response":{
+    "client_groups_id":"1",
+    "client_groups_name":"Постоянный посетитель",
+    "loyalty_type":"1",
+    "client_groups_discount":"10",
+    "birthday_bonus":"5000",
+    "count_groups_clients":"125"
+  }
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Все клиенты в Poster группируются по маркетинговым группам. Запрос возвращает данные конкретной маркетинговой группы.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTP запрос
 
-### HTTP Request
+`GET https://{account}.joinposter.com/api/clients.getGroup`
 
-`GET http://example.com/kittens/<ID>`
+### GET-параметры запроса clients.getGroup
 
-### URL Parameters
-
-Parameter | Description
+Параметр | Описание
 --------- | -----------
-ID | The ID of the kitten to retrieve
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
+group_id | Id группы, для которой надо вернуть детальные данные
 
+### Параметры ответа clients.getGroup
+
+Параметр | Описание
+--------- | -----------
+client_groups_id | id маркетинговой группы
+client_groups_name |  Название группы
+loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
+client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
+birthday_bonus |  Количество бонусов (в копейках), начисляемых на День рождения клиентов. Используется только бонусными группами.
+count_groups_clients |  Количество клиентов, что находится в данной группе
+
+## clients.createGroup: Создание маркетинговой группы
+
+>  Пример запроса:
+
+```php
+$url = 'https://demo.joinposter.com/api/clients.createGroup?' .
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148';
+
+$group = [
+  'client_groups_name' => 'Постоянный посетитель',
+  'loyalty_type' => 1,
+  'client_groups_discount' => 10,
+  'birthday_bonus' => 50.00
+];
+
+$group = sendRequest($url, 'post', $group);
+```
+
+> Пример ответа:
+
+```json
+{
+  "response":6
+}
+```
+
+Все клиенты в Poster группируются по маркетинговым группам. Запрос создает маркетинговую группу, в которую в последствии можно поместить клиентов.
+
+### HTTP запрос
+
+`POST https://{account}.joinposter.com/api/clients.createGroup`
+
+### GET-параметры запроса clients.createGroup
+
+Параметр | Описание
+--------- | -----------
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
+
+### POST-параметры запроса clients.createGroup
+
+Параметр | Описание
+--------- | -----------
+client_groups_name |  Название группы
+loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
+client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
+birthday_bonus |  Количество бонусов (в гривнах/рублях), начисляемых на День рождения клиентов. Используется только бонусными группами.
+
+### Параметры ответа clients.createGroup
+
+Параметр | Описание
+--------- | -----------
+response | id новосозданной маркетинговой группы
+
+## clients.updateGroup: Изменение данных маркетинговой группы
+
+>  Пример запроса:
+
+```php
+$url = 'https://demo.joinposter.com/api/clients.updateGroup?' .
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148';
+
+$group = [
+  'client_groups_id' => 6,
+  'client_groups_name' => 'Постоянный посетитель',
+  'loyalty_type' => 1,
+  'client_groups_discount' => 10,
+  'birthday_bonus' => 50.00
+];
+
+$group = sendRequest($url, 'post', $group);
+```
+
+> Пример ответа:
+
+```json
+{
+  "response":6
+}
+```
+
+Все клиенты в Poster группируются по маркетинговым группам. Запрос позволяет изменить данные конкретной маркетинговой группы.
+
+### HTTP запрос
+
+`POST https://{account}.joinposter.com/api/clients.updateGroup`
+
+### GET-параметры запроса clients.updateGroup
+
+Параметр | Описание
+--------- | -----------
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
+
+### POST-параметры запроса clients.updateGroup
+
+Параметр | Описание
+--------- | -----------
+client_groups_id |  id маркетинговой группы, что будет изменена
+client_groups_name |  Название группы
+loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
+client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
+birthday_bonus |  Количество бонусов (в гривнах/рублях), начисляемых на День рождения клиентов. Используется только бонусными группами.
+
+### Параметры ответа clients.updateGroup
+
+Параметр | Описание
+--------- | -----------
+response | id измененной маркетинговой группы

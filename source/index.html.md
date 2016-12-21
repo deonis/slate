@@ -72,7 +72,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 >  Пример запроса:
 
 ```php
-$url = 'https://demo.joinposter.com/api/clients.getGroups?' . 
+$url = 'https://demo.joinposter.com/api/clients.getGroups?' .
   'format=json&token=745d516e1b9320ed85b84d5bfda14148';
 
 $groups = sendRequest($url);
@@ -349,3 +349,143 @@ group_id |  id маркетинговой группы, что будет уда
 Параметр | Описание
 --------- | -----------
 response | В случае успешного удаления Poster вернет true
+
+
+## clients.getClients: Список клиентов
+
+>  Пример запроса:
+
+```php
+$url = 'https://demo.joinposter.com/api/clients.getClients?' .
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148&num=100&offset=0';
+
+$clients = sendRequest($url);
+```
+
+> Пример ответа:
+
+```json
+{
+  "response":[
+    {
+      "client_id":"21",
+      "firstname":"Евгений",
+      "lastname":"Атаманов",
+      "patronymic":"",
+      "discount_per":"0",
+      "bonus":"0",
+      "total_payed_sum":"501226",
+      "date_activale":"2015-08-09 02:07:13",
+      "phone":"",
+      "phone_number":"0",
+      "email":"",
+      "birthday":"0000-00-00",
+      "card_number":"0",
+      "client_sex":"1",
+      "country":"",
+      "city":"",
+      "comment":"",
+      "address":"0",
+      "client_groups_id":"2",
+      "client_groups_name":"Скидка Выходной",
+      "client_groups_discount":"15",
+      "loyalty_type":"1",
+      "birthday_bonus":"0"
+    },
+    {
+      "client_id":"125",
+      "firstname":"Антон",
+      "lastname":"Попов",
+      "patronymic":"",
+      "discount_per":"0",
+      "bonus":"0",
+      "total_payed_sum":"0",
+      "date_activale":"2016-10-03 17:37:56",
+      "phone":"+380 50 111-22-33",
+      "phone_number":"380501112233",
+      "email":"contact@joinposter.com",
+      "birthday":"0000-00-00",
+      "card_number":"0",
+      "client_sex":"0",
+      "country":"0",
+      "city":"0",
+      "comment":"0",
+      "address":"0",
+      "client_groups_id":"1",
+      "client_groups_name":"Постоянный посетитель",
+      "client_groups_discount":"0",
+      "loyalty_type":"1",
+      "birthday_bonus":"0"
+    },
+    {
+      "client_id":"318",
+      "firstname":"Игорь",
+      "lastname":"Кучма",
+      "patronymic":"",
+      "discount_per":"0",
+      "bonus":"0",
+      "total_payed_sum":"0",
+      "date_activale":"2016-12-03 16:33:20",
+      "phone":"+380 95 111 2222",
+      "phone_number":"380951112222",
+      "email":"",
+      "birthday":"0000-00-00",
+      "card_number":"",
+      "client_sex":"1",
+      "country":"Ukraine",
+      "city":"",
+      "comment":"",
+      "address":"",
+      "client_groups_id":"4",
+      "client_groups_name":"Скидочная система 10%",
+      "client_groups_discount":"10",
+      "loyalty_type":"2",
+      "birthday_bonus":"0"
+    }
+  ]
+}
+```
+
+Запрос на получение списка клентов поддерживает «постраничную» выборку данных.
+
+### HTTP запрос
+
+`GET https://{account}.joinposter.com/api/clients.getClients`
+
+### GET-параметры запроса clients.getClients
+
+Параметр | Описание
+--------- | -----------
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
+num | Количество клиентов, которое необходимо получить
+offset | Сколько записей необходимо пропустить от начала списка
+
+
+### Параметры ответа clients.getClients
+
+Параметр | Описание
+--------- | -----------
+client_id | id клиента
+firstname | Имя клиента
+lastname | Фамилия
+patronymic | Отчество
+discount_per | Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.
+bonus | Текущий размер накопленных бонусов клиента (в копейках)
+total_payed_sum | Общая сумма покупок (в копейках)
+date_activale | Дата создания клиента
+phone | Телефон
+phone_number | Телефон в виде одних только чисел
+email | Адрес электронной почты
+birthday | Дата рождения
+card_number | Номер карты
+client_sex | Пол
+country | Страна клиента
+city | Город
+address | Адрес
+comment | Комментарий к учетной записи клиента
+client_groups_id | id маркетинговой группы
+client_groups_name |  Название группы
+loyalty_type |  Тип группы: 1 — бонусная, 2 — скидочная
+client_groups_discount |  Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.
+birthday_bonus |  Количество бонусов (в копейках), начисляемых на День рождения клиентов. Используется только бонусными группами.

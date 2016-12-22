@@ -99,65 +99,25 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
+      <img src="images/logo_poster.png" alt="Logo poster" />
         <div class="lang-selector">
               <a href="#" data-language-name="php">PHP</a>
         </div>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Поиск">
         </div>
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://docs.google.com/document/d/1t7DazjpM2EF6Og8NDLoHKPGEuKWTvWdx9HgaJm-8WNw' target='_blank'>Первая версия документации API</a></li>
+            <li><a href='https://joinposter.com' target='_blank'>Перейти на сайт joinposter.com</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
-
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-
-<h1 id="1-0">Авторизация 1-0</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="clients">clients: Маркетинг</h1>
+        <h1 id="clients">clients: Маркетинг</h1>
 
 <p>Все методы по работе с разделом маркетинга начинаются с clients.</p>
 
@@ -166,7 +126,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <blockquote>
 <p>Пример запроса:</p>
 </blockquote>
-<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.getGroups?' . 
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.getGroups?' .
   'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148';</span>
 
 $groups = sendRequest($url);
@@ -309,7 +269,7 @@ $group = sendRequest($url);
 </tr>
 <tr>
 <td>group_id</td>
-<td>Id группы, для которой надо вернуть детальные данные</td>
+<td>Id группы, для которой необходимо вернуть детальные данные</td>
 </tr>
 </tbody></table>
 
@@ -603,59 +563,822 @@ $result = sendRequest($url, 'post', $group);
 </tr>
 </tbody></table>
 
-          <h1 id="er">Ошибки er</h1>
+<h2 id="clients-getclients">clients.getClients: Список клиентов</h2>
 
-<p>API Poster в своих ответах может возвращать следующие ошибки:</p>
+<blockquote>
+<p>Пример запроса:</p>
+</blockquote>
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.getClients?' .
+  'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148&amp;num=100&amp;offset=0';</span>
+
+$clients = sendRequest($url);
+</code></pre>
+<blockquote>
+<p>Пример ответа:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Евгений"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Атаманов"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"patronymic"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount_per"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_payed_sum"</span><span class="p">:</span><span class="s2">"501226"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_activale"</span><span class="p">:</span><span class="s2">"2015-08-09 02:07:13"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"card_number"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_sex"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_id"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_name"</span><span class="p">:</span><span class="s2">"Скидка Выходной"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_discount"</span><span class="p">:</span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyalty_type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday_bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="s2">"125"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Антон"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Попов"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"patronymic"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount_per"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_payed_sum"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_activale"</span><span class="p">:</span><span class="s2">"2016-10-03 17:37:56"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"+380 50 111-22-33"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="s2">"380501112233"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"contact@joinposter.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"card_number"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_sex"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_name"</span><span class="p">:</span><span class="s2">"Постоянный посетитель"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_discount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyalty_type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday_bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="s2">"318"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Игорь"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Кучма"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"patronymic"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount_per"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_payed_sum"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_activale"</span><span class="p">:</span><span class="s2">"2016-12-03 16:33:20"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"+380 95 111 2222"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="s2">"380951112222"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday"</span><span class="p">:</span><span class="s2">"0000-00-00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"card_number"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_sex"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"Ukraine"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_name"</span><span class="p">:</span><span class="s2">"Скидочная система 10%"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_discount"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyalty_type"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday_bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Запрос на получение списка клентов поддерживает «постраничную» выборку данных.</p>
+
+<h3 id="http">HTTP запрос</h3>
+
+<p><code class="prettyprint">GET https://{account}.joinposter.com/api/clients.getClients</code></p>
+
+<h3 id="get-clients-getclients">GET-параметры запроса clients.getClients</h3>
 
 <table><thead>
 <tr>
-<th>Код ошибки</th>
+<th>Параметр</th>
 <th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>format</td>
+<td>Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>token</td>
+<td>Авторизационный токен</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>num</td>
+<td>Количество клиентов, которое необходимо получить</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>offset</td>
+<td>Сколько записей необходимо пропустить от начала списка</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>group_id</td>
+<td>Опциональный параметр, позволяет отобрать клиентов только указанной группы. В качестве значения необходимо указать client_groups_id группы.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>client_id_only</td>
+<td>Опциональный параметр, позволяет возвращать только client_id клиентов. В качестве значения необходимо указать true.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>1c</td>
+<td>Опциональный параметр, позволяет возвращать id_1c привязанный к клиенту. В качестве значения необходимо указать true.</td>
+</tr>
+</tbody></table>
+
+<aside class="info">Если num и offset не указывать, то будут возвращены все клиенты без постраничной разбивки</aside>
+
+<h3 id="clients-getclients">Параметры ответа clients.getClients</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>id клиента</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>firstname</td>
+<td>Имя клиента</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>lastname</td>
+<td>Фамилия</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>patronymic</td>
+<td>Отчество</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>discount_per</td>
+<td>Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>Текущий размер накопленных бонусов клиента (в копейках)</td>
+</tr>
+<tr>
+<td>total_payed_sum</td>
+<td>Общая сумма покупок (в копейках)</td>
+</tr>
+<tr>
+<td>date_activale</td>
+<td>Дата создания клиента</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Телефон</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>Телефон в виде одних только чисел</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Адрес электронной почты</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>Дата рождения</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td>Номер карты</td>
+</tr>
+<tr>
+<td>client_sex</td>
+<td>Пол: 0 — не указан, 1 — мужской, 2 — женский</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Страна клиента</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Город</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Адрес</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Комментарий к учетной записи клиента</td>
+</tr>
+<tr>
+<td>id_1c</td>
+<td>Код данного клиента в системе 1С. Этот параметр можно установить с помощью компанды clients.set1cClientId</td>
+</tr>
+<tr>
+<td>client_groups_id</td>
+<td>id маркетинговой группы</td>
+</tr>
+<tr>
+<td>client_groups_name</td>
+<td>Название группы</td>
+</tr>
+<tr>
+<td>loyalty_type</td>
+<td>Тип группы: 1 — бонусная, 2 — скидочная</td>
+</tr>
+<tr>
+<td>client_groups_discount</td>
+<td>Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.</td>
+</tr>
+<tr>
+<td>birthday_bonus</td>
+<td>Количество бонусов (в копейках), начисляемых на День рождения клиентов. Используется только бонусными группами.</td>
+</tr>
+</tbody></table>
+
+<h2 id="clients-getclient">clients.getClient: Данные клиента</h2>
+
+<blockquote>
+<p>Пример запроса:</p>
+</blockquote>
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.getClient?' .
+  'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148&amp;client_id=1';</span>
+
+$client = sendRequest($url);
+</code></pre>
+<blockquote>
+<p>Пример ответа:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="s2">"38"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Попова"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"000022"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"patronymic"</span><span class="p">:</span><span class="s2">"Елена"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount_per"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total_payed_sum"</span><span class="p">:</span><span class="s2">"417000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date_activale"</span><span class="p">:</span><span class="s2">"2016-04-23 05:14:26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"+380 50 11-11-111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="s2">"380501111111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"contact@joinposter.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday"</span><span class="p">:</span><span class="s2">"1986-11-23"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"card_number"</span><span class="p">:</span><span class="s2">"0000000000222"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_sex"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"comment"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_id"</span><span class="p">:</span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_name"</span><span class="p">:</span><span class="s2">"Постоянный клиент"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_groups_discount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyalty_type"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"birthday_bonus"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"accumulation_products"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"4"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"promotion_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"products"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"count"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"sum"</span><span class="p">:</span><span class="mi">540</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"product_id"</span><span class="p">:</span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"modification_id"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"prize_products"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"prize_product_id"</span><span class="p">:</span><span class="s2">"301"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"promotion_id"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"conditions"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"bonus_products"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"1"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"bonus_products_pcs"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bonus_products_g"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bonus_products_condition_type"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"bonus_products_condition_value"</span><span class="p">:</span><span class="s2">"100"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"date_accrual"</span><span class="p">:</span><span class="s2">"2016-05-11 11:40:10"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Запрос возвращает данные конкретного клиента, включая его накопления по акциям с накоплениями, а также отложенные бонусные товары по бонусным акциям.</p>
+
+<h3 id="http">HTTP запрос</h3>
+
+<p><code class="prettyprint">GET https://{account}.joinposter.com/api/clients.getClient</code></p>
+
+<h3 id="get-clients-getclient">GET-параметры запроса clients.getClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Авторизационный токен</td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Id клиента, для которого необходимо вернуть детальные данные</td>
+</tr>
+<tr>
+<td>1c</td>
+<td>Опциональный параметр, позволяет возвращать id_1c привязанный к клиенту. В качестве значения необходимо указать true.</td>
+</tr>
+</tbody></table>
+
+<h3 id="clients-getclient">Параметры ответа clients.getClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>id клиента</td>
+</tr>
+<tr>
+<td>firstname</td>
+<td>Имя клиента</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>Фамилия</td>
+</tr>
+<tr>
+<td>patronymic</td>
+<td>Отчество</td>
+</tr>
+<tr>
+<td>discount_per</td>
+<td>Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>Текущий размер накопленных бонусов клиента (в копейках)</td>
+</tr>
+<tr>
+<td>total_payed_sum</td>
+<td>Общая сумма покупок (в копейках)</td>
+</tr>
+<tr>
+<td>date_activale</td>
+<td>Дата создания клиента</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Телефон</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>Телефон в виде одних только чисел</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Адрес электронной почты</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>Дата рождения</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td>Номер карты</td>
+</tr>
+<tr>
+<td>client_sex</td>
+<td>Пол: 0 — не указан, 1 — мужской, 2 — женский</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Страна клиента</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Город</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Адрес</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Комментарий к учетной записи клиента</td>
+</tr>
+<tr>
+<td>id_1c</td>
+<td>Код данного клиента в системе 1С. Этот параметр можно установить с помощью компанды clients.set1cClientId</td>
+</tr>
+<tr>
+<td>client_groups_id</td>
+<td>id маркетинговой группы</td>
+</tr>
+<tr>
+<td>client_groups_name</td>
+<td>Название группы</td>
+</tr>
+<tr>
+<td>loyalty_type</td>
+<td>Тип группы: 1 — бонусная, 2 — скидочная</td>
+</tr>
+<tr>
+<td>client_groups_discount</td>
+<td>Процент группы. Если группа бонсная, то означает сколько начислять бонусов на оплаченную сумму заказа. Если группа скидочная, то сколько % скидки давать по заказу.</td>
+</tr>
+<tr>
+<td>birthday_bonus</td>
+<td>Количество бонусов (в копейках), начисляемых на День рождения клиентов. Используется только бонусными группами.</td>
+</tr>
+<tr>
+<td>accumulation_products</td>
+<td>Список продаж, что относятся к акциям с накоплением. Например, акция «5+1», где учитываются покупки в разных чеках.</td>
+</tr>
+<tr>
+<td>prize_products</td>
+<td>Список отложенных бонусов, что относятся к призовым акциям. Например, акция «Купи пиццу и получи завтра еще одну на 10% дешевле», то есть призы, которые выдаются не сразу, а откладываются на следующую покупку.</td>
+</tr>
+</tbody></table>
+
+<h3 id="accumulation_products">Содержимое параметра accumulation_products</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>promotion_id</td>
+<td>id акции с накоплением, за которой закрепили данную продажу</td>
+</tr>
+<tr>
+<td>products</td>
+<td>Список товаров осуществленной продажи, что относится к акции с накоплением. Ниже описано содержимое данного массива товаров.</td>
+</tr>
+<tr>
+<td>product_id</td>
+<td>id товара</td>
+</tr>
+<tr>
+<td>modification_id</td>
+<td>id модификации, если товар с модификациями</td>
+</tr>
+<tr>
+<td>count</td>
+<td>Количество товара</td>
+</tr>
+<tr>
+<td>sum</td>
+<td>Стоимость товара (в гривнах/рублях)</td>
+</tr>
+</tbody></table>
+
+<h3 id="prize_products">Содержимое параметра prize_products</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prize_product_id</td>
+<td>Уникальный id отложенного приза</td>
+</tr>
+<tr>
+<td>promotion_id</td>
+<td>id призовой акции</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>Список условий, по которым определяется какой именно приз надо выдать. type обозначет: 0 — из всех товаров, 1 — из категории, что указана в id, 2 — конкретный товар с указанным id, 3 — модификация товара с указанным id (для удобства еще будет передан product_id товара, к которому относится модификация)</td>
+</tr>
+<tr>
+<td>bonus_products_pcs</td>
+<td>Сколь штук бонусного товара выдавать, если он штучный</td>
+</tr>
+<tr>
+<td>bonus_products_g</td>
+<td>Сколь грамм бонусного товара выдавать, если он весовой</td>
+</tr>
+<tr>
+<td>bonus_products_condition_type</td>
+<td>На каких условиях выдавать бонус: 1 — процент скидки (например, с 50 или 100% скидкой), 2 — фиксированная сумма скидки (например, дать 5 гривен/рублей скидки на товар), 3 — фиксированная стоимость товара (например, продавать по 1 гривне/рублю)</td>
+</tr>
+<tr>
+<td>bonus_products_condition_value</td>
+<td>Количество для параметра bonus_products_condition_type. Если денежное значение, то возвращается в гривнах/рублях.</td>
+</tr>
+</tbody></table>
+
+<h2 id="clients-createclient">clients.createClient: Создание клиента</h2>
+
+<blockquote>
+<p>Пример запроса:</p>
+</blockquote>
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.createClient?' .
+  'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148';</span>
+
+$client = [
+  'client_name' =&gt; 'Попова Елена Андреевна',
+  'client_sex' =&gt; 2,
+  'client_groups_id_client' =&gt; 7,
+  'card_number' =&gt; '0000000000222',
+  'discount_per' =&gt; 0,
+  'phone' =&gt; '+380 50 11-11-111',
+  'email' =&gt; 'contact@joinposter.com',
+  'birthday' =&gt; '1986-11-23',
+  'city' =&gt; '',
+  'country' =&gt; '',
+  'address' =&gt; '',
+  'comment' =&gt; '',
+  'bonus' =&gt; 10,
+  'total_payed_sum' =&gt; 417000,
+];
+
+$client = sendRequest($url, 'post', $client);
+</code></pre>
+<blockquote>
+<p>Пример ответа:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="mi">4082</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Запрос создает клиента.</p>
+
+<h3 id="http">HTTP запрос</h3>
+
+<p><code class="prettyprint">POST https://{account}.joinposter.com/api/clients.createClient</code></p>
+
+<h3 id="get-clients-createclient">GET-параметры запроса clients.createClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Авторизационный токен</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-clients-createclient">POST-параметры запроса clients.createClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_name</td>
+<td>ФИО клиента</td>
+</tr>
+<tr>
+<td>client_sex</td>
+<td>Пол: 0 — не указан, 1 — мужской, 2 — женский</td>
+</tr>
+<tr>
+<td>client_groups_id_client</td>
+<td>id маркетинговой группы, к которой будет относиться клиент</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td>Номер карты</td>
+</tr>
+<tr>
+<td>discount_per</td>
+<td>Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Телефон</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Адрес электронной почты</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>Дата рождения</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Город</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Страна клиента</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Адрес</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Комментарий к учетной записи клиента</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>Текущий размер накопленных бонусов клиента (в гривнах/рублях)</td>
+</tr>
+<tr>
+<td>total_payed_sum</td>
+<td>Общая сумма покупок (в копейках)</td>
+</tr>
+</tbody></table>
+
+<h3 id="clients-createclient">Параметры ответа clients.createClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response</td>
+<td>id новосозданного клиента</td>
+</tr>
+</tbody></table>
+
+<h2 id="clients-updateclient">clients.updateClient: Изменение данных клиента</h2>
+
+<blockquote>
+<p>Пример запроса:</p>
+</blockquote>
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.updateClient?' .
+  'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148';</span>
+
+$client = [
+  'client_id' =&gt; 4082,
+  'client_name' =&gt; 'Попова Елена Андреевна',
+  'client_sex' =&gt; 2,
+  'client_groups_id_client' =&gt; 7,
+  'card_number' =&gt; '0000000000222',
+  'discount_per' =&gt; 0,
+  'phone' =&gt; '+380 50 11-11-111',
+  'email' =&gt; 'contact@joinposter.com',
+  'birthday' =&gt; '1986-11-23',
+  'city' =&gt; '',
+  'country' =&gt; '',
+  'address' =&gt; '',
+  'comment' =&gt; '',
+  'bonus' =&gt; 10,
+  'total_payed_sum' =&gt; 417000,
+];
+
+$client = sendRequest($url, 'post', $client);
+</code></pre>
+<blockquote>
+<p>Пример ответа:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="mi">4082</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Запрос позволяет изменить данные существующего клиента.</p>
+
+<h3 id="http">HTTP запрос</h3>
+
+<p><code class="prettyprint">POST https://{account}.joinposter.com/api/clients.updateClient</code></p>
+
+<h3 id="get-clients-updateclient">GET-параметры запроса clients.updateClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Авторизационный токен</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-clients-updateclient">POST-параметры запроса clients.updateClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>id изменяемого клиента</td>
+</tr>
+<tr>
+<td>client_name</td>
+<td>ФИО клиента</td>
+</tr>
+<tr>
+<td>client_sex</td>
+<td>Пол: 0 — не указан, 1 — мужской, 2 — женский</td>
+</tr>
+<tr>
+<td>client_groups_id_client</td>
+<td>id маркетинговой группы, к которой будет относиться клиент</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td>Номер карты</td>
+</tr>
+<tr>
+<td>discount_per</td>
+<td>Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Телефон</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Адрес электронной почты</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>Дата рождения</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Город</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Страна клиента</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Адрес</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>Комментарий к учетной записи клиента</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>Текущий размер накопленных бонусов клиента (в гривнах/рублях)</td>
+</tr>
+<tr>
+<td>total_payed_sum</td>
+<td>Общая сумма покупок (в копейках)</td>
+</tr>
+</tbody></table>
+
+<h3 id="clients-updateclient">Параметры ответа clients.updateClient</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response</td>
+<td>id измененного клиента</td>
 </tr>
 </tbody></table>
 

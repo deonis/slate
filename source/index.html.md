@@ -716,3 +716,80 @@ total_payed_sum | Общая сумма покупок (в копейках)
 Параметр | Описание
 --------- | -----------
 response | id новосозданного клиента
+
+
+## clients.updateClient: Изменение данных клиента
+
+>  Пример запроса:
+
+```php
+$url = 'https://demo.joinposter.com/api/clients.updateClient?' .
+  'format=json&token=745d516e1b9320ed85b84d5bfda14148';
+
+$client = [
+  'client_id' => 4082,
+  'client_name' => 'Попова Елена Андреевна',
+  'client_sex' => 2,
+  'client_groups_id_client' => 7,
+  'card_number' => '0000000000222',
+  'discount_per' => 0,
+  'phone' => '+380 50 11-11-111',
+  'email' => 'contact@joinposter.com',
+  'birthday' => '1986-11-23',
+  'city' => '',
+  'country' => '',
+  'address' => '',
+  'comment' => '',
+  'bonus' => 10,
+  'total_payed_sum' => 417000,
+];
+
+$client = sendRequest($url, 'post', $client);
+```
+
+> Пример ответа:
+
+```json
+{
+  "response":4082
+}
+```
+
+Запрос позволяет изменить данные существующего клиента.
+
+### HTTP запрос
+
+`POST https://{account}.joinposter.com/api/clients.updateClient`
+
+### GET-параметры запроса clients.updateClient
+
+Параметр | Описание
+--------- | -----------
+format | Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.
+token | Авторизационный токен
+
+### POST-параметры запроса clients.updateClient
+
+Параметр | Описание
+--------- | -----------
+client_id | id изменяемого клиента
+client_name | ФИО клиента
+client_sex | Пол: 0 — не указан, 1 — мужской, 2 — женский
+client_groups_id_client | id маркетинговой группы, к которой будет относиться клиент
+card_number | Номер карты
+discount_per | Персональный % скидки или бонсов. Будет использоваться если будет больше чем процент группы.
+phone | Телефон
+email | Адрес электронной почты
+birthday | Дата рождения
+city | Город
+country | Страна клиента
+address | Адрес
+comment | Комментарий к учетной записи клиента
+bonus | Текущий размер накопленных бонусов клиента (в гривнах/рублях)
+total_payed_sum | Общая сумма покупок (в копейках)
+
+### Параметры ответа clients.updateClient
+
+Параметр | Описание
+--------- | -----------
+response | id измененного клиента

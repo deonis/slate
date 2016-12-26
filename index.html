@@ -1404,7 +1404,7 @@ $bonus = sendRequest($url, 'post', $bonus);
   </span><span class="nt">"response"</span><span class="p">:</span><span class="mi">30</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Запрос позволяет изменить количество бонусов на счету клиента. В качестве суммы изменения необходимо прислать дельту, а не окончательное значение.</p>
+<p>Запрос позволяет изменить количество бонусов на счету клиента. В качестве количества необходимо прислать дельту, а не окончательное значение.</p>
 
 <h3 id="http">HTTP запрос</h3>
 
@@ -1461,6 +1461,88 @@ $bonus = sendRequest($url, 'post', $bonus);
 <tr>
 <td>response</td>
 <td>Количество бонусов (в гривнах/рублях), которое стало у клиента после внесения изменений</td>
+</tr>
+</tbody></table>
+
+<h2 id="clients-changeclientpayedsum">clients.changeClientPayedSum: Изменение общей суммы покупок клиента</h2>
+
+<blockquote>
+<p>Пример запроса:</p>
+</blockquote>
+<pre class="highlight php"><code>$url = 'https://demo.joinposter.com/api/clients.changeClientPayedSum?' .
+  'format=json<span class="ni">&amp;token=745d516e1b9320ed85b84d5bfda14148';</span>
+
+$sum = [
+  'client_id' =&gt; 4083,
+  'count' =&gt; 20,
+];
+
+$sum = sendRequest($url, 'post', $sum);
+</code></pre>
+<blockquote>
+<p>Пример ответа:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="mi">110</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Запрос позволяет изменить общую сумму покупок клиента. В качестве количества необходимо прислать дельту, а не окончательное значение.</p>
+
+<h3 id="http">HTTP запрос</h3>
+
+<p><code class="prettyprint">POST https://{account}.joinposter.com/api/clients.changeClientPayedSum</code></p>
+
+<h3 id="get-clients-changeclientpayedsum">GET-параметры запроса clients.changeClientPayedSum</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>format</td>
+<td>Указываем формат выдачи ответа. Может быть xml или json. По умолчанию json.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Авторизационный токен</td>
+</tr>
+</tbody></table>
+
+<h3 id="post-clients-changeclientpayedsum">POST-параметры запроса clients.changeClientPayedSum</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>client_id</td>
+<td>id клиента, для которого меняем общую сумму покупок</td>
+</tr>
+<tr>
+<td>count</td>
+<td>Сумма покупок (в гривнах/рублях), которую надо начилить клиенту, если count положительный, или списать, если count отрицательный</td>
+</tr>
+<tr>
+<td>block_webhook</td>
+<td>Если вы слушаете вебхуки по клиентам, то будет полезно прислать этот параметр в виде true, чтобы не получить в ответ вебхук об измении данных этого клиента</td>
+</tr>
+</tbody></table>
+
+<h3 id="clients-changeclientpayedsum">Параметры ответа clients.changeClientPayedSum</h3>
+
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>response</td>
+<td>Общая сумма покупок (в гривнах/рублях), которая стала у клиента после внесения изменений</td>
 </tr>
 </tbody></table>
 
